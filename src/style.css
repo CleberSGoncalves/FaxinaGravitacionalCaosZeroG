@@ -1,0 +1,1678 @@
+/**
+ * ============================================================================
+ * FAXINA GRAVITACIONAL: CAOS ZERO-G!
+ * Master Stylesheet - Dark Space Station & Cyberpunk Sci-Fi Theme
+ * Target: CrazyGames HTML5 Platform (Invariant across resolutions)
+ * ============================================================================
+ */
+
+/* ----------------------------------------------------------------------------
+   1. GOOGLE FONTS & DESIGN TOKENS
+   ---------------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Rajdhani:wght@500;600;700&display=swap');
+
+:root {
+  /* Color Palette: Deep Space Station Backgrounds */
+  --color-space-deep: #030818;
+  --color-space-black: #01040f;
+  --color-space-navy-950: #060c22;
+  --color-space-navy-900: #0c1533;
+  --color-space-navy-800: #132048;
+  --color-space-navy-700: #1d2e61;
+  --color-space-navy-600: #293f82;
+
+  /* Neon Accents: Zero-G Cyan Core */
+  --color-cyan-glow: #00f5ff;
+  --color-cyan-bright: #38bdf8;
+  --color-cyan-base: #0ea5e9;
+  --color-cyan-dark: #0284c7;
+  --color-cyan-deep: #0369a1;
+
+  /* Quantum Field: Violet / Magenta Accents */
+  --color-quantum-glow: #c084fc;
+  --color-quantum-bright: #a855f7;
+  --color-quantum-base: #8b5cf6;
+  --color-quantum-dark: #6d28d9;
+
+  /* Reward & Stars: Solar Gold / Amber */
+  --color-gold-glow: #fef08a;
+  --color-gold-bright: #fde047;
+  --color-gold-base: #fbbf24;
+  --color-gold-dark: #d97706;
+  --color-gold-deep: #b45309;
+
+  /* Alarm & Out-of-Bounds: Hazard Crimson */
+  --color-hazard-glow: #fca5a5;
+  --color-hazard-bright: #f87171;
+  --color-hazard-base: #ef4444;
+  --color-hazard-dark: #dc2626;
+  --color-hazard-deep: #991b1b;
+
+  /* Success & Life Support: Emerald Station */
+  --color-success-glow: #6ee7b7;
+  --color-success-bright: #34d399;
+  --color-success-base: #10b981;
+  --color-success-dark: #059669;
+
+  /* Metallic Alloys: Titanium / Steel Text & Borders */
+  --color-alloy-100: #f8fafc;
+  --color-alloy-200: #e2e8f0;
+  --color-alloy-300: #cbd5e1;
+  --color-alloy-400: #94a3b8;
+  --color-alloy-500: #64748b;
+  --color-alloy-600: #475569;
+  --color-alloy-700: #334155;
+
+  /* Glassmorphism Surface Backgrounds */
+  --glass-surface-ultra-dark: rgba(3, 8, 24, 0.94);
+  --glass-surface-card: rgba(12, 21, 51, 0.88);
+  --glass-surface-panel: rgba(15, 23, 42, 0.85);
+  --glass-surface-pill: rgba(19, 32, 72, 0.75);
+  --glass-surface-button: rgba(29, 46, 97, 0.65);
+  --glass-surface-hover: rgba(38, 62, 130, 0.75);
+
+  /* Borders & Shadows */
+  --border-cyan-subtle: 1px solid rgba(0, 245, 255, 0.25);
+  --border-cyan-bright: 1px solid rgba(0, 245, 255, 0.65);
+  --border-cyan-glow: 1px solid #00f5ff;
+  --border-gold-subtle: 1px solid rgba(251, 191, 36, 0.35);
+  --border-gold-bright: 1px solid #fbbf24;
+  --border-hazard-bright: 1px solid #ef4444;
+
+  --shadow-cyan-glow-sm: 0 0 10px rgba(0, 245, 255, 0.35);
+  --shadow-cyan-glow-md: 0 0 20px rgba(0, 245, 255, 0.5), 0 0 5px rgba(56, 189, 248, 0.8);
+  --shadow-cyan-glow-lg: 0 0 35px rgba(0, 245, 255, 0.65), 0 0 10px rgba(56, 189, 248, 0.9);
+  --shadow-gold-glow-md: 0 0 20px rgba(251, 191, 36, 0.6), 0 0 8px rgba(245, 158, 11, 0.8);
+  --shadow-hazard-glow-md: 0 0 20px rgba(239, 68, 68, 0.6), 0 0 8px rgba(220, 38, 38, 0.8);
+  --shadow-panel-depth: 0 25px 50px -12px rgba(0, 0, 0, 0.85), 0 0 25px rgba(0, 245, 255, 0.15);
+
+  /* Typography Font Stacks */
+  --font-ui: 'Montserrat', system-ui, -apple-system, sans-serif;
+  --font-scifi: 'Rajdhani', monospace, 'Montserrat', sans-serif;
+
+  /* Layout Spacing & Timings */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s var(--ease-smooth);
+  --transition-bounce: 0.4s var(--ease-spring);
+}
+
+/* ----------------------------------------------------------------------------
+   2. GLOBAL RESET & BASE STYLES
+   ---------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
+  background-color: var(--color-space-deep);
+  color: var(--color-alloy-100);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.4;
+  touch-action: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar elimination */
+::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* ----------------------------------------------------------------------------
+   3. CORE GAME VIEWPORT ARCHITECTURE
+   ---------------------------------------------------------------------------- */
+#app {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-space-deep);
+}
+
+#game-stage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  touch-action: none;
+  background-color: var(--color-space-deep);
+}
+
+#game-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+}
+
+/* Scanline and Vignette FX (Cosmetic station screen overlay) */
+.hud-scanline-fx {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 3px, 6px 100%;
+  z-index: 10;
+  opacity: 0.35;
+}
+
+.hud-vignette-fx {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(3, 8, 24, 0) 55%,
+    rgba(3, 8, 24, 0.7) 85%,
+    rgba(1, 4, 15, 0.95) 100%
+  );
+  z-index: 11;
+}
+
+/* ----------------------------------------------------------------------------
+   4. HUD CONTAINER & TOP NAVIGATION BAR
+   ---------------------------------------------------------------------------- */
+.hud-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: env(safe-area-inset-top, 16px)
+           env(safe-area-inset-right, 20px)
+           env(safe-area-inset-bottom, 16px)
+           env(safe-area-inset-left, 20px);
+}
+
+.hud-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 12px 18px;
+  background: linear-gradient(
+    180deg,
+    rgba(3, 8, 24, 0.92) 0%,
+    rgba(7, 14, 36, 0.75) 70%,
+    rgba(3, 8, 24, 0) 100%
+  );
+  border-bottom: 1px solid rgba(0, 245, 255, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 0 0 16px 16px;
+}
+
+.hud-block-left,
+.hud-block-center,
+.hud-block-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hud-block-left {
+  justify-content: flex-start;
+}
+
+.hud-block-center {
+  justify-content: center;
+  flex: 1;
+}
+
+.hud-block-right {
+  justify-content: flex-end;
+}
+
+/* ----------------------------------------------------------------------------
+   5. SCI-FI HUD BADGES & INDICATORS
+   ---------------------------------------------------------------------------- */
+/* Level Indicator Pill */
+.hud-level-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--glass-surface-panel);
+  border: var(--border-cyan-subtle);
+  border-radius: 9999px;
+  padding: 6px 16px;
+  box-shadow: inset 0 0 8px rgba(0, 245, 255, 0.15), var(--shadow-cyan-glow-sm);
+  font-family: var(--font-scifi);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-cyan-bright);
+}
+
+.hud-level-badge-number {
+  color: #ffffff;
+  font-weight: 800;
+  text-shadow: 0 0 8px var(--color-cyan-glow);
+}
+
+/* Attempts / Clean-up Chances Box */
+.hud-attempts-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--glass-surface-panel);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 9999px;
+  padding: 6px 14px;
+}
+
+.hud-attempt-heart {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-cyan-bright);
+  filter: drop-shadow(0 0 6px rgba(0, 245, 255, 0.6));
+  transition: transform var(--transition-bounce), filter var(--transition-fast), opacity var(--transition-fast);
+}
+
+.hud-attempt-heart svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.hud-attempt-heart.is-active {
+  animation: heartPulse 2.2s infinite ease-in-out;
+}
+
+.hud-attempt-heart.is-lost {
+  opacity: 0.25;
+  filter: grayscale(1);
+  transform: scale(0.85);
+}
+
+/* Stars Rating Box */
+.hud-stars-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--glass-surface-panel);
+  border: var(--border-gold-subtle);
+  border-radius: 9999px;
+  padding: 6px 14px;
+  box-shadow: inset 0 0 6px rgba(251, 191, 36, 0.15);
+}
+
+.hud-stars-icon {
+  width: 18px;
+  height: 18px;
+  fill: var(--color-gold-base);
+  filter: drop-shadow(0 0 6px var(--color-gold-bright));
+}
+
+.hud-stars-count {
+  font-family: var(--font-scifi);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-gold-bright);
+}
+
+/* Space Scrap / Coins Box */
+.hud-coins-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--glass-surface-panel);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+  border-radius: 9999px;
+  padding: 6px 14px;
+}
+
+.hud-coins-icon {
+  width: 18px;
+  height: 18px;
+  fill: var(--color-cyan-glow);
+}
+
+.hud-coins-count {
+  font-family: var(--font-scifi);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-alloy-200);
+}
+
+/* ----------------------------------------------------------------------------
+   6. GRAVITY POWER METER & FUEL GAUGE
+   ---------------------------------------------------------------------------- */
+.hud-gravity-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 180px;
+}
+
+.hud-gravity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hud-gravity-label {
+  font-family: var(--font-scifi);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-alloy-300);
+}
+
+.hud-gravity-value {
+  font-family: var(--font-scifi);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-cyan-glow);
+  text-shadow: 0 0 6px rgba(0, 245, 255, 0.5);
+}
+
+.hud-gravity-track {
+  width: 100%;
+  height: 10px;
+  background: rgba(6, 12, 34, 0.95);
+  border: 1px solid rgba(0, 245, 255, 0.35);
+  border-radius: 9999px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.hud-gravity-fill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--color-cyan-deep) 0%,
+    var(--color-cyan-base) 50%,
+    var(--color-cyan-glow) 100%
+  );
+  border-radius: 9999px;
+  position: relative;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 12px var(--color-cyan-glow);
+}
+
+.hud-gravity-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 8px;
+  background: #ffffff;
+  box-shadow: 0 0 10px #ffffff, 0 0 18px var(--color-cyan-glow);
+  border-radius: 9999px;
+}
+
+.hud-gravity-box.is-critical .hud-gravity-fill {
+  background: linear-gradient(90deg, var(--color-hazard-dark), var(--color-hazard-bright));
+  box-shadow: 0 0 12px var(--color-hazard-base);
+  animation: alertPulse 0.8s infinite alternate;
+}
+
+/* ----------------------------------------------------------------------------
+   7. HUD INTERACTIVE CONTROLS & ACTION BUTTONS
+   ---------------------------------------------------------------------------- */
+.hud-icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--glass-surface-panel);
+  border: var(--border-cyan-subtle);
+  color: var(--color-alloy-200);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+  outline: none;
+  transition: all var(--transition-fast);
+  box-shadow: inset 0 0 8px rgba(0, 245, 255, 0.1);
+  position: relative;
+}
+
+.hud-icon-btn:hover {
+  background: var(--glass-surface-hover);
+  border: var(--border-cyan-glow);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-cyan-glow-md);
+}
+
+.hud-icon-btn:active {
+  transform: translateY(1px) scale(0.95);
+  box-shadow: var(--shadow-cyan-glow-sm);
+}
+
+.hud-icon-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+/* Special Ability Action Buttons (Bottom HUD) */
+.hud-bottom-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  padding: 10px 16px;
+  pointer-events: none;
+}
+
+.hud-ability-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  pointer-events: auto;
+}
+
+.hud-ability-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.hud-ability-btn {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, var(--color-space-navy-700), var(--color-space-navy-950));
+  border: 2px solid var(--color-cyan-glow);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto;
+  position: relative;
+  outline: none;
+  box-shadow: var(--shadow-cyan-glow-md), inset 0 0 14px rgba(0, 245, 255, 0.4);
+  transition: transform var(--transition-bounce), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.hud-ability-btn:hover {
+  transform: scale(1.08);
+  box-shadow: var(--shadow-cyan-glow-lg), inset 0 0 20px rgba(0, 245, 255, 0.6);
+}
+
+.hud-ability-btn:active {
+  transform: scale(0.95);
+}
+
+.hud-ability-btn.is-active {
+  border-color: var(--color-quantum-bright);
+  box-shadow: 0 0 25px var(--color-quantum-glow), inset 0 0 16px var(--color-quantum-bright);
+  animation: pulseAbility 1.5s infinite alternate;
+}
+
+.hud-ability-btn.is-disabled {
+  opacity: 0.45;
+  filter: grayscale(0.8);
+  pointer-events: none;
+  cursor: not-allowed;
+  border-color: var(--color-alloy-600);
+  box-shadow: none;
+}
+
+.hud-ability-icon {
+  width: 32px;
+  height: 32px;
+  fill: currentColor;
+  filter: drop-shadow(0 0 6px currentColor);
+}
+
+/* Badge showing charges remaining */
+.hud-ability-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 22px;
+  height: 22px;
+  background: var(--color-cyan-base);
+  border: 2px solid var(--color-space-deep);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-scifi);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  box-shadow: 0 0 8px var(--color-cyan-glow);
+}
+
+.hud-ability-label {
+  font-family: var(--font-scifi);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-alloy-300);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* ----------------------------------------------------------------------------
+   8. MODAL WINDOWS & BACKDROP ARCHITECTURE
+   ---------------------------------------------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 8, 24, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-panel {
+  width: 100%;
+  max-width: 440px;
+  background: var(--glass-surface-card);
+  border: 1px solid rgba(0, 245, 255, 0.4);
+  border-radius: 24px;
+  padding: 32px 28px;
+  box-shadow: var(--shadow-panel-depth), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  position: relative;
+  overflow: hidden;
+  transform: translateY(20px) scale(0.96);
+  transition: transform var(--transition-bounce), opacity var(--transition-fast);
+  color: var(--color-alloy-100);
+}
+
+.modal-overlay.is-visible .modal-panel {
+  transform: translateY(0) scale(1);
+}
+
+/* Cyber Decals & Corner Accents */
+.modal-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 15%;
+  right: 15%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-cyan-glow), transparent);
+  box-shadow: 0 0 10px var(--color-cyan-glow);
+}
+
+.modal-panel::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 25%;
+  right: 25%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.5), transparent);
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.modal-title {
+  font-family: var(--font-scifi);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 0 0 14px rgba(0, 245, 255, 0.6);
+  margin-bottom: 4px;
+}
+
+.modal-subtitle {
+  font-size: 0.95rem;
+  color: var(--color-alloy-400);
+  letter-spacing: 0.02em;
+}
+
+.modal-body {
+  margin-bottom: 28px;
+}
+
+.modal-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-actions-row {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+/* ----------------------------------------------------------------------------
+   9. MODAL BUTTONS (PRIMARY, SECONDARY, REWARDED, DANGER)
+   ---------------------------------------------------------------------------- */
+.modal-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 14px 20px;
+  border-radius: 14px;
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Primary Button (Neon Cyan Energy) */
+.modal-btn-primary {
+  background: linear-gradient(135deg, var(--color-cyan-bright) 0%, var(--color-cyan-base) 60%, var(--color-cyan-dark) 100%);
+  color: var(--color-space-black);
+  box-shadow: 0 4px 15px rgba(0, 245, 255, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.modal-btn-primary:hover {
+  background: linear-gradient(135deg, #ffffff 0%, var(--color-cyan-glow) 50%, var(--color-cyan-base) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 245, 255, 0.6);
+}
+
+.modal-btn-primary:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px rgba(0, 245, 255, 0.4);
+}
+
+/* Secondary Button (Ghost Glass Cyber) */
+.modal-btn-secondary {
+  background: var(--glass-surface-button);
+  border: 1px solid rgba(0, 245, 255, 0.35);
+  color: var(--color-alloy-100);
+  box-shadow: inset 0 0 10px rgba(0, 245, 255, 0.08);
+}
+
+.modal-btn-secondary:hover {
+  background: var(--glass-surface-hover);
+  border-color: var(--color-cyan-glow);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: inset 0 0 15px rgba(0, 245, 255, 0.2), 0 4px 15px rgba(0, 245, 255, 0.2);
+}
+
+.modal-btn-secondary:active {
+  transform: translateY(1px);
+}
+
+/* Rewarded Ad Button (CrazyGames Solar Amber) */
+.modal-btn-rewarded {
+  background: linear-gradient(135deg, var(--color-gold-bright) 0%, var(--color-gold-base) 50%, var(--color-gold-dark) 100%);
+  color: #1a0f00;
+  box-shadow: 0 4px 16px rgba(251, 191, 36, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.6);
+  animation: rewardPulse 2.4s infinite ease-in-out;
+}
+
+.modal-btn-rewarded:hover {
+  background: linear-gradient(135deg, #ffffff 0%, var(--color-gold-glow) 40%, var(--color-gold-base) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(251, 191, 36, 0.7);
+}
+
+.modal-btn-rewarded:active {
+  transform: translateY(1px);
+}
+
+.modal-btn-rewarded svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+/* Danger Button (Hazard Emergency) */
+.modal-btn-danger {
+  background: linear-gradient(135deg, var(--color-hazard-bright) 0%, var(--color-hazard-base) 60%, var(--color-hazard-dark) 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.modal-btn-danger:hover {
+  background: linear-gradient(135deg, #ffffff 0%, var(--color-hazard-glow) 40%, var(--color-hazard-base) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.6);
+  color: var(--color-hazard-deep);
+}
+
+.modal-btn-danger:active {
+  transform: translateY(1px);
+}
+
+/* ----------------------------------------------------------------------------
+   10. LEVEL SELECT MODAL & GRID
+   ---------------------------------------------------------------------------- */
+.modal-panel-level-select {
+  max-width: 580px;
+}
+
+.level-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  padding: 4px;
+  max-height: 52vh;
+  overflow-y: auto;
+}
+
+.level-card {
+  aspect-ratio: 1;
+  background: var(--glass-surface-panel);
+  border: 1px solid rgba(0, 245, 255, 0.2);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  position: relative;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.level-card:hover {
+  transform: translateY(-4px) scale(1.04);
+  border-color: var(--color-cyan-glow);
+  box-shadow: var(--shadow-cyan-glow-md);
+  background: var(--glass-surface-hover);
+}
+
+.level-card:active {
+  transform: scale(0.96);
+}
+
+.level-card.is-current {
+  border: 2px solid var(--color-cyan-glow);
+  box-shadow: var(--shadow-cyan-glow-md);
+  animation: pulseCard 2s infinite ease-in-out;
+}
+
+.level-card.is-locked {
+  opacity: 0.35;
+  filter: grayscale(0.9);
+  cursor: not-allowed;
+  border-color: var(--color-alloy-700);
+}
+
+.level-card.is-locked:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--color-alloy-700);
+  background: var(--glass-surface-panel);
+}
+
+.level-card-number {
+  font-family: var(--font-scifi);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(0, 245, 255, 0.4);
+}
+
+.level-card-stars {
+  display: flex;
+  gap: 3px;
+}
+
+.level-card-star {
+  width: 12px;
+  height: 12px;
+  fill: var(--color-alloy-600);
+}
+
+.level-card-star.is-earned {
+  fill: var(--color-gold-base);
+  filter: drop-shadow(0 0 3px var(--color-gold-bright));
+}
+
+.level-card-lock-icon {
+  width: 20px;
+  height: 20px;
+  fill: var(--color-alloy-500);
+}
+
+/* ----------------------------------------------------------------------------
+   11. VICTORY MODAL & STAR BURST ANIMATIONS
+   ---------------------------------------------------------------------------- */
+.modal-victory {
+  text-align: center;
+}
+
+.victory-stars-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin: 16px 0 24px;
+}
+
+.victory-star-slot {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.victory-star-icon {
+  width: 54px;
+  height: 54px;
+  fill: var(--color-space-navy-800);
+  stroke: rgba(251, 191, 36, 0.3);
+  stroke-width: 1.5;
+  transition: transform 0.4s var(--ease-spring);
+}
+
+.victory-star-slot.is-awarded .victory-star-icon {
+  fill: var(--color-gold-base);
+  stroke: var(--color-gold-bright);
+  filter: drop-shadow(0 0 16px var(--color-gold-bright)) drop-shadow(0 0 30px var(--color-gold-base));
+  animation: starPop 0.6s var(--ease-spring) forwards;
+}
+
+.victory-stats-panel {
+  background: rgba(6, 12, 34, 0.8);
+  border: 1px solid rgba(0, 245, 255, 0.2);
+  border-radius: 16px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.victory-stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-scifi);
+  font-size: 1.05rem;
+}
+
+.victory-stat-label {
+  color: var(--color-alloy-300);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.victory-stat-value {
+  color: var(--color-cyan-glow);
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-shadow: 0 0 8px rgba(0, 245, 255, 0.5);
+}
+
+/* ----------------------------------------------------------------------------
+   12. GAME OVER & HAZARD BREACH MODAL
+   ---------------------------------------------------------------------------- */
+.modal-game-over {
+  border-color: rgba(239, 68, 68, 0.6);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), 0 0 30px rgba(239, 68, 68, 0.25);
+}
+
+.modal-game-over .modal-title {
+  color: var(--color-hazard-bright);
+  text-shadow: 0 0 16px rgba(239, 68, 68, 0.8);
+}
+
+.modal-game-over::before {
+  background: linear-gradient(90deg, transparent, var(--color-hazard-bright), transparent);
+  box-shadow: 0 0 12px var(--color-hazard-base);
+}
+
+.hazard-stripe-bar {
+  width: 100%;
+  height: 8px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--color-hazard-base),
+    var(--color-hazard-base) 10px,
+    var(--color-space-black) 10px,
+    var(--color-space-black) 20px
+  );
+  border-radius: 4px;
+  margin: 12px 0 20px;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+}
+
+.game-over-reason {
+  font-size: 1.05rem;
+  color: var(--color-alloy-200);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* ----------------------------------------------------------------------------
+   13. SETTINGS MODAL (SLIDERS, TOGGLES, LANGUAGE)
+   ---------------------------------------------------------------------------- */
+.settings-group {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.settings-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.settings-label-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-label {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.settings-hint {
+  font-size: 0.75rem;
+  color: var(--color-alloy-400);
+}
+
+/* Custom Sci-Fi Range Slider */
+.sci-slider-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 50%;
+}
+
+.sci-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--color-space-navy-950);
+  border: 1px solid rgba(0, 245, 255, 0.3);
+  outline: none;
+  cursor: pointer;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.sci-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-cyan-glow);
+  box-shadow: 0 0 10px var(--color-cyan-glow), inset 0 0 3px #ffffff;
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.sci-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.sci-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-cyan-glow);
+  border: none;
+  box-shadow: 0 0 10px var(--color-cyan-glow);
+  cursor: pointer;
+}
+
+/* Custom Sci-Fi Toggle Switch */
+.sci-toggle {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 26px;
+  cursor: pointer;
+}
+
+.sci-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.sci-toggle-track {
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-space-navy-950);
+  border: 1px solid rgba(0, 245, 255, 0.3);
+  border-radius: 26px;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.sci-toggle-track::before {
+  position: absolute;
+  content: '';
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--color-alloy-400);
+  border-radius: 50%;
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.sci-toggle input:checked + .sci-toggle-track {
+  background-color: var(--color-space-navy-700);
+  border-color: var(--color-cyan-glow);
+}
+
+.sci-toggle input:checked + .sci-toggle-track::before {
+  transform: translateX(22px);
+  background-color: var(--color-cyan-glow);
+  box-shadow: 0 0 8px var(--color-cyan-glow);
+}
+
+/* Language Selection Pill Buttons */
+.language-selector {
+  display: flex;
+  gap: 8px;
+  background: var(--color-space-navy-950);
+  border: 1px solid rgba(0, 245, 255, 0.2);
+  border-radius: 12px;
+  padding: 4px;
+}
+
+.lang-btn {
+  padding: 6px 14px;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  color: var(--color-alloy-400);
+  font-family: var(--font-scifi);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.lang-btn.is-active {
+  background: var(--color-cyan-base);
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+}
+
+/* ----------------------------------------------------------------------------
+   14. PAUSE OVERLAY
+   ---------------------------------------------------------------------------- */
+.pause-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(3, 8, 24, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.pause-overlay.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.pause-title {
+  font-family: var(--font-scifi);
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 0 0 20px var(--color-cyan-glow);
+  animation: pulse 2.5s infinite ease-in-out;
+}
+
+.pause-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 260px;
+}
+
+/* ----------------------------------------------------------------------------
+   15. TOUCH CONTROLS & MOBILE JOYSTICK
+   ---------------------------------------------------------------------------- */
+.touch-controls-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 25;
+  display: none;
+}
+
+.touch-joystick-zone {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px dashed rgba(0, 245, 255, 0.3);
+  background: radial-gradient(circle, rgba(0, 245, 255, 0.05) 0%, rgba(3, 8, 24, 0.4) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.touch-joystick-knob {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, var(--color-cyan-bright), var(--color-cyan-dark));
+  box-shadow: 0 0 15px var(--color-cyan-glow);
+  pointer-events: none;
+}
+
+.touch-btn-zone {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  gap: 16px;
+  pointer-events: auto;
+}
+
+/* ----------------------------------------------------------------------------
+   16. HINT TOAST & HUD NOTIFICATIONS
+   ---------------------------------------------------------------------------- */
+.hud-hint-toast {
+  position: absolute;
+  bottom: 84px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--glass-surface-panel);
+  border: 1px solid var(--color-cyan-glow);
+  border-radius: 9999px;
+  padding: 10px 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: #ffffff;
+  font-family: var(--font-scifi);
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  box-shadow: var(--shadow-cyan-glow-md);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform var(--transition-bounce), opacity var(--transition-fast);
+  z-index: 30;
+  max-width: 90%;
+  text-align: center;
+}
+
+.hud-hint-toast.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.hud-hint-toast svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--color-cyan-glow);
+  flex-shrink: 0;
+}
+
+/* ----------------------------------------------------------------------------
+   17. CINEMATIC INTRO / SPLASH OVERLAY
+   ---------------------------------------------------------------------------- */
+.splash-container {
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-space-deep);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 0.6s ease;
+}
+
+.splash-container.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.splash-logo-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.splash-game-title {
+  font-family: var(--font-scifi);
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 0 0 25px var(--color-cyan-glow), 0 0 50px rgba(0, 245, 255, 0.4);
+}
+
+.splash-game-subtitle {
+  font-family: var(--font-ui);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-cyan-bright);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+}
+
+.splash-start-btn {
+  width: 240px;
+  padding: 16px 24px;
+  border-radius: 9999px;
+  font-family: var(--font-scifi);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #ffffff 0%, var(--color-cyan-glow) 50%, var(--color-cyan-base) 100%);
+  color: var(--color-space-black);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 30px var(--color-cyan-glow);
+  transition: transform var(--transition-bounce), box-shadow var(--transition-fast);
+  animation: pulseSplashBtn 2s infinite ease-in-out;
+}
+
+.splash-start-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 45px var(--color-cyan-glow), 0 0 20px #ffffff;
+}
+
+.splash-start-btn:active {
+  transform: scale(0.96);
+}
+
+/* ----------------------------------------------------------------------------
+   18. PROCEDURAL KEYFRAME ANIMATIONS
+   ---------------------------------------------------------------------------- */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(0.98);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 12px var(--color-cyan-glow);
+  }
+  50% {
+    box-shadow: 0 0 28px var(--color-cyan-glow), 0 0 12px rgba(255, 255, 255, 0.8);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px) rotate(-1deg); }
+  40% { transform: translateX(6px) rotate(1deg); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes heartPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+@keyframes alertPulse {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes rewardPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 16px rgba(251, 191, 36, 0.45);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 6px 24px rgba(251, 191, 36, 0.7);
+  }
+}
+
+@keyframes pulseAbility {
+  0%, 100% {
+    box-shadow: 0 0 20px var(--color-quantum-glow);
+  }
+  50% {
+    box-shadow: 0 0 35px var(--color-quantum-glow), 0 0 15px #ffffff;
+  }
+}
+
+@keyframes pulseCard {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(0, 245, 255, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 22px rgba(0, 245, 255, 0.85);
+  }
+}
+
+@keyframes starPop {
+  0% {
+    transform: scale(0) rotate(-45deg);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.25) rotate(10deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes pulseSplashBtn {
+  0%, 100% {
+    box-shadow: 0 0 25px var(--color-cyan-glow);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 40px var(--color-cyan-glow), 0 0 15px rgba(255, 255, 255, 0.9);
+    transform: scale(1.03);
+  }
+}
+
+/* ----------------------------------------------------------------------------
+   19. RESPONSIVE DESIGN & MOBILE OPTIMIZATIONS
+   ---------------------------------------------------------------------------- */
+
+/* Tablets & Small Laptops */
+@media screen and (max-width: 1024px) {
+  .hud-gravity-box {
+    min-width: 140px;
+  }
+
+  .splash-game-title {
+    font-size: 2.8rem;
+  }
+}
+
+/* Mobile Devices (Portrait & Landscape) */
+@media screen and (max-width: 768px) {
+  .touch-controls-layer {
+    display: block;
+  }
+
+  .hud-top-bar {
+    padding: 8px 12px;
+    gap: 8px;
+  }
+
+  .hud-level-badge {
+    padding: 4px 10px;
+    font-size: 0.95rem;
+  }
+
+  .hud-attempts-box,
+  .hud-stars-box,
+  .hud-coins-box {
+    padding: 4px 8px;
+    gap: 4px;
+  }
+
+  .hud-attempt-heart {
+    width: 18px;
+    height: 18px;
+  }
+
+  .hud-gravity-box {
+    min-width: 100px;
+  }
+
+  .hud-gravity-label {
+    display: none;
+  }
+
+  .hud-icon-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .hud-icon-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .hud-ability-btn {
+    width: 54px;
+    height: 54px;
+  }
+
+  .hud-ability-icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .modal-panel {
+    padding: 24px 20px;
+    border-radius: 20px;
+  }
+
+  .modal-title {
+    font-size: 1.6rem;
+  }
+
+  .level-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .splash-game-title {
+    font-size: 2.2rem;
+  }
+
+  .splash-game-subtitle {
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+  }
+}
+
+/* Ultra Compact Screens & Foldables */
+@media screen and (max-width: 480px) {
+  .hud-block-center {
+    display: none;
+  }
+
+  .hud-level-badge {
+    font-size: 0.85rem;
+    padding: 4px 8px;
+  }
+
+  .level-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .victory-stars-row {
+    gap: 10px;
+  }
+
+  .victory-star-slot {
+    width: 46px;
+    height: 46px;
+  }
+
+  .victory-star-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .splash-game-title {
+    font-size: 1.75rem;
+  }
+
+  .splash-start-btn {
+    width: 200px;
+    font-size: 1.25rem;
+    padding: 12px 20px;
+  }
+}
+
+/* Landscape Mobile (Orientation fix) */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .hud-top-bar {
+    padding: 4px 12px;
+  }
+
+  .hud-bottom-bar {
+    padding: 4px 12px;
+  }
+
+  .hud-ability-btn {
+    width: 46px;
+    height: 46px;
+  }
+
+  .hud-ability-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .modal-panel {
+    max-height: 88vh;
+    overflow-y: auto;
+    padding: 16px 20px;
+  }
+
+  .level-grid {
+    max-height: 45vh;
+  }
+
+  .splash-logo-wrap {
+    margin-bottom: 16px;
+  }
+
+  .splash-game-title {
+    font-size: 2rem;
+  }
+}
